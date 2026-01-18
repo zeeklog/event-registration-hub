@@ -20,7 +20,7 @@ export const RecommendSection = ({ title, icon, activities, viewAllLink }: Recom
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           {icon && <div className="text-action">{icon}</div>}
-          <h2 className="text-xl font-bold text-white">
+          <h2 className="text-xl font-bold text-foreground">
             {title}
           </h2>
         </div>

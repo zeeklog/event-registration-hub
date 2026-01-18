@@ -164,9 +164,12 @@ const Profile = () => {
                   <Waves className="text-white/30 w-10 h-10" />
                 </div>
                 <div className="flex items-end justify-between">
-                  <div>
+                  <div 
+                    onClick={() => navigate('/profile/points')}
+                    className="cursor-pointer active:opacity-80 transition-all"
+                  >
                     <p className="text-white/60 text-[10px] font-bold uppercase mb-1">总奖励积分</p>
-                    <p className="text-white text-2xl font-black tracking-tight">{currentUser.points}P</p>
+                    <p className="text-white text-2xl font-black tracking-tight">{currentUser.points}积分</p>
                   </div>
                   <button 
                     onClick={() => navigate('/profile/coupons')}

@@ -108,9 +108,12 @@ const PointsMall = () => {
               </Button>
               <h1 className="text-xl font-bold text-foreground tracking-tight">积分商城</h1>
             </div>
-            <div className="flex items-center gap-2 bg-action/10 px-3 py-1.5 rounded-full border border-action/20 shadow-lg shadow-action/10">
+            <div 
+              onClick={() => navigate('/profile/points')}
+              className="flex items-center gap-2 bg-action/10 px-3 py-1.5 rounded-full border border-action/20 shadow-lg shadow-action/10 cursor-pointer active:scale-95 transition-all"
+            >
               <Zap className="w-4 h-4 text-action fill-action" />
-              <span className="text-action text-sm font-black">{currentUser.points}P</span>
+              <span className="text-action text-sm font-black">{currentUser.points}积分</span>
             </div>
           </div>
         </header>

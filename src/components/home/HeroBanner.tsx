@@ -43,7 +43,7 @@ export const HeroBanner = ({ banners }: HeroBannerProps) => {
               className="w-full h-full object-cover"
             />
             {/* 渐变遮罩 */}
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent dark:from-white/10 dark:via-transparent dark:to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-5">
               <h3 className="text-xl font-bold text-white leading-tight drop-shadow-md">
                 {banner.title}

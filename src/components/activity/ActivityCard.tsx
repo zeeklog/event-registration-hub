@@ -56,7 +56,7 @@ export const ActivityCard = ({ activity, variant = 'default' }: ActivityCardProp
             </div>
             <div className="flex-1 p-3 flex flex-col justify-between">
               <div>
-                <h3 className="font-bold text-sm text-white line-clamp-2 leading-tight">
+                <h3 className="font-bold text-sm text-foreground line-clamp-2 leading-tight">
                   {activity.title}
                 </h3>
                 <div className="flex items-center gap-1 mt-1 text-xs text-gray-400 font-medium">
@@ -118,7 +118,7 @@ export const ActivityCard = ({ activity, variant = 'default' }: ActivityCardProp
         </div>
 
         <div className="p-3 space-y-2">
-          <h3 className="text-sm font-bold text-white line-clamp-2 leading-tight">
+          <h3 className="text-sm font-bold text-foreground line-clamp-2 leading-tight">
             {activity.title}
           </h3>
           
