@@ -16,6 +16,7 @@ import Coupons from "./pages/Coupons";
 import ProfileEdit from "./pages/ProfileEdit";
 import Verify from "./pages/Verify";
 import Points from "./pages/Points";
+import PointsCenter from "./pages/PointsCenter";
 import SearchPage from "./pages/SearchPage";
 import Favorites from "./pages/Favorites";
 import Settings from "./pages/Settings";
@@ -57,7 +58,7 @@ const App = () => (
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/orders" element={<Orders />} />
             <Route path="/profile/coupons" element={<Coupons />} />
-            <Route path="/profile/points" element={<Points />} />
+            <Route path="/profile/points" element={<PointsCenter />} />
             <Route path="/profile/edit" element={<ProfileEdit />} />
             <Route path="/profile/verify" element={<Verify />} />
             <Route path="/profile/favorites" element={<Favorites />} />
