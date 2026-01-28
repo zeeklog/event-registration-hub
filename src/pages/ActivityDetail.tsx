@@ -15,7 +15,8 @@ import {
   Map,
   Package,
   FileText,
-  CheckCircle2
+  CheckCircle2,
+  Info
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -27,7 +28,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-import { activities, agreements } from '@/data/mockData';
+import { activities, agreements, eventDetails, mockActivityReviews } from '@/data/mockData';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 
@@ -58,6 +59,8 @@ const ActivityDetail = () => {
   const [showMap, setShowMap] = useState(false);
 
   const activity = activities.find(a => a.id === id);
+  const details = eventDetails.find(d => d.activityId === id);
+  const reviews = mockActivityReviews.filter(r => r.activityId === id);
 
   if (!activity) {
     return (
@@ -430,23 +433,220 @@ const ActivityDetail = () => {
             <TabsTrigger value="equipment" className="flex-1 text-xs font-bold data-[state=active]:bg-action data-[state=active]:text-white">装备</TabsTrigger>
             <TabsTrigger value="reviews" className="flex-1 text-xs font-bold data-[state=active]:bg-action data-[state=active]:text-white">评价</TabsTrigger>
           </TabsList>
-          <TabsContent value="intro" className="mt-6 animate-in fade-in duration-300">
-            <p className="text-sm text-muted-foreground leading-relaxed font-medium">
-              {activity.description || '暂无详细介绍'}
-            </p>
-            <div className="mt-6 space-y-4">
-              <h4 className="font-bold text-foreground text-sm flex items-center gap-2">
-                <Shield className="w-4 h-4 text-eco" />
+          <TabsContent value="intro" className="mt-6 animate-in fade-in duration-300 space-y-8">
+            <div className="space-y-4">
+              <h4 className="font-black text-foreground text-xs uppercase tracking-[0.2em] flex items-center gap-2">
+                <FileText className="w-4 h-4 text-action" />
+                活动介绍
+              </h4>
+              <p className="text-sm text-muted-foreground leading-relaxed font-medium whitespace-pre-wrap">
+                {activity.description || '暂无详细介绍'}
+              </p>
+            </div>
+
+            {details?.schedule && (
+              <div className="space-y-4">
+                <h4 className="font-black text-foreground text-xs uppercase tracking-[0.2em] flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-eco" />
+                  活动流程
+                </h4>
+                <div className="space-y-4 relative before:absolute before:left-[7px] before:top-2 before:bottom-2 before:w-[1px] before:bg-border">
+                  {details.schedule.map((item, idx) => (
+                    <div key={idx} className="relative pl-6">
+                      <div className="absolute left-0 top-1.5 w-3.5 h-3.5 rounded-full bg-background border-2 border-eco z-10" />
+                      <div className="flex flex-col gap-1">
+                        <span className="text-[10px] font-black text-eco uppercase tracking-widest">{item.time}</span>
+                        <span className="text-sm font-bold text-foreground">{item.content}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="space-y-4">
+              <h4 className="font-black text-foreground text-xs uppercase tracking-[0.2em] flex items-center gap-2">
+                <Shield className="w-4 h-4 text-action" />
                 活动亮点
               </h4>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-3">
                 {activity.tags?.map(tag => (
-                  <div key={tag} className="flex items-center gap-2 p-2 bg-muted rounded-sm border border-border">
+                  <div key={tag} className="flex items-center gap-2 p-3 bg-muted/50 rounded-sm border border-border">
                     <CheckCircle2 className="w-3.5 h-3.5 text-eco" />
-                    <span className="text-xs text-muted-foreground font-bold">{tag}</span>
+                    <span className="text-[11px] text-foreground font-black uppercase tracking-wider">{tag}</span>
                   </div>
                 ))}
               </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="notice" className="mt-6 animate-in fade-in duration-300 space-y-8">
+            {details?.requirements && (
+              <div className="space-y-4">
+                <h4 className="font-black text-foreground text-xs uppercase tracking-[0.2em] flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-orange-500" />
+                  准入要求
+                </h4>
+                <Card className="bg-muted/30 border-border">
+                  <CardContent className="p-4 space-y-3">
+                    {details.requirements.age && (
+                      <div className="flex justify-between text-sm font-bold">
+                        <span className="text-muted-foreground">年龄限制</span>
+                        <span className="text-foreground">{details.requirements.age.min}-{details.requirements.age.max}岁</span>
+                      </div>
+                    )}
+                    {details.requirements.qualification && (
+                      <div className="flex justify-between text-sm font-bold">
+                        <span className="text-muted-foreground">资格证书</span>
+                        <span className="text-foreground">{details.requirements.qualification}</span>
+                      </div>
+                    )}
+                    <div className="pt-2">
+                      <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2">健康要求</p>
+                      <ul className="space-y-1.5">
+                        {details.requirements.healthRequirements?.map((req, i) => (
+                          <li key={i} className="text-xs font-medium text-foreground/80 flex gap-2">
+                            <span className="text-action">•</span>
+                            {req}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+
+            {details?.safetyMeasures && (
+              <div className="space-y-4">
+                <h4 className="font-black text-foreground text-xs uppercase tracking-[0.2em] flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-eco" />
+                  安全保障
+                </h4>
+                <div className="grid grid-cols-1 gap-3">
+                  <div className="p-3 bg-muted/30 rounded-sm border border-border flex items-start gap-3">
+                    <div className="p-2 rounded-sm bg-eco/10 text-eco">
+                      <Shield className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-black text-foreground uppercase tracking-wider">保险覆盖</p>
+                      <p className="text-[10px] text-muted-foreground font-medium mt-1">{details.safetyMeasures.insurance}</p>
+                    </div>
+                  </div>
+                  <div className="p-3 bg-muted/30 rounded-sm border border-border flex items-start gap-3">
+                    <div className="p-2 rounded-sm bg-action/10 text-action">
+                      <Users className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-black text-foreground uppercase tracking-wider">专业人员</p>
+                      <p className="text-[10px] text-muted-foreground font-medium mt-1">{details.safetyMeasures.coachQualification}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent value="equipment" className="mt-6 animate-in fade-in duration-300 space-y-8">
+            {details?.equipmentRequirements && (
+              <div className="space-y-6">
+                <div className="space-y-4">
+                  <h4 className="font-black text-foreground text-xs uppercase tracking-[0.2em] flex items-center gap-2">
+                    <Package className="w-4 h-4 text-action" />
+                    强制携带
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {details.equipmentRequirements.required.map(item => (
+                      <Badge key={item} variant="outline" className="border-red-500/50 text-red-500 bg-red-500/5 rounded-sm px-3 py-1 text-xs font-bold">
+                        {item}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="font-black text-foreground text-xs uppercase tracking-[0.2em] flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-eco" />
+                    建议携带
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {details.equipmentRequirements.recommended.map(item => (
+                      <Badge key={item} variant="outline" className="border-eco/50 text-eco bg-eco/5 rounded-sm px-3 py-1 text-xs font-bold">
+                        {item}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="font-black text-foreground text-xs uppercase tracking-[0.2em] flex items-center gap-2">
+                    <Info className="w-4 h-4 text-muted-foreground" />
+                    官方提供
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {details.equipmentRequirements.provided.map(item => (
+                      <Badge key={item} variant="outline" className="border-muted-foreground/50 text-muted-foreground rounded-sm px-3 py-1 text-xs font-bold">
+                        {item}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent value="reviews" className="mt-6 animate-in fade-in duration-300 space-y-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <Star className="w-5 h-5 fill-yellow-500 text-yellow-500" />
+                <span className="text-xl font-black text-foreground">{activity.rating}</span>
+                <span className="text-xs text-muted-foreground font-bold">({activity.reviews}条评价)</span>
+              </div>
+              <Button variant="ghost" size="sm" className="text-action font-black text-[10px] uppercase tracking-widest" onClick={() => navigate(`/activity/${id}/review`)}>
+                我要评价
+              </Button>
+            </div>
+
+            <div className="space-y-6">
+              {reviews.map(review => (
+                <div key={review.id} className="space-y-3 pb-6 border-b border-border last:border-0">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full border-2 border-border p-0.5 overflow-hidden">
+                        <img src={review.avatar} alt={review.userName} className="w-full h-full object-cover rounded-full" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-black text-foreground leading-none">{review.userName}</p>
+                        <div className="flex items-center gap-1 mt-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className={cn("w-2.5 h-2.5", i < review.rating ? "fill-yellow-500 text-yellow-500" : "text-muted-foreground")} />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold text-muted-foreground">{review.date}</span>
+                  </div>
+                  <p className="text-sm text-foreground/80 font-medium leading-relaxed">
+                    {review.content}
+                  </p>
+                  {review.images && (
+                    <div className="flex gap-2 overflow-x-auto no-scrollbar py-1">
+                      {review.images.map((img, i) => (
+                        <div key={i} className="w-24 h-24 rounded-sm border border-border overflow-hidden shrink-0">
+                          <img src={img} alt="review" className="w-full h-full object-cover" />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <div className="flex flex-wrap gap-1.5">
+                    {review.tags.map(tag => (
+                      <span key={tag} className="text-[9px] font-black uppercase tracking-widest text-muted-foreground bg-muted px-2 py-0.5 rounded-sm">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </TabsContent>
         </Tabs>

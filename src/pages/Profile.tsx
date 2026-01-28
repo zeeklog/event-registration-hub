@@ -103,7 +103,7 @@ const Profile = () => {
       title: '更多服务',
       items: [
         { icon: Shield, label: '运动保险', path: '/profile/insurance', color: 'bg-blue-500/10 text-blue-500' },
-        { icon: MessageCircle, label: '在线客服', path: '/service', color: 'bg-eco/10 text-eco' },
+        { icon: MessageCircle, label: '服务工单', path: '/service', color: 'bg-eco/10 text-eco' },
         { icon: Star, label: '我的评价', path: '/profile/reviews', color: 'bg-gold-gradient text-white' },
         { icon: Settings, label: '系统设置', path: '/profile/settings', color: 'bg-gray-500/10 text-gray-400' },
       ]

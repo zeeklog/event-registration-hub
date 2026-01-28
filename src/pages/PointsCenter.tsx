@@ -137,34 +137,7 @@ const PointsCenter: React.FC = () => {
         </div>
 
         {/* SectionHeader: Community Leaders */}
-        <div className="flex items-center justify-between px-5 pb-2 pt-6">
-          <h3 className="text-xs font-black text-muted-foreground uppercase tracking-[0.2em]">社区领袖</h3>
-          <span className="text-action text-[10px] font-black uppercase tracking-widest cursor-pointer">查看全部</span>
-        </div>
-
-        {/* Leaders Carousel */}
-        <div className="flex w-full overflow-x-auto no-scrollbar px-4 py-3">
-          <div className="flex flex-row items-start justify-start gap-6">
-            {leaders.map((leader, idx) => (
-              <div key={idx} className="flex flex-col items-center gap-3 w-20 shrink-0">
-                <div className="relative">
-                  <div className={`size-16 rounded-full border-2 ${leader.borderColor} p-0.5 overflow-hidden`}>
-                    <img src={leader.avatar} alt={leader.name} className="w-full h-full object-cover rounded-full bg-muted" />
-                  </div>
-                  {leader.rank !== '#4' && (
-                    <div className={`absolute -bottom-1 -right-1 ${
-                      leader.rank === '#1' ? 'bg-yellow-500' : leader.rank === '#2' ? 'bg-slate-400' : 'bg-orange-700'
-                    } text-white text-[9px] font-black px-1.5 py-0.5 rounded-full border-2 border-background shadow-lg`}>
-                      {leader.rank}
-                    </div>
-                  )}
-                </div>
-                <p className="text-foreground text-[10px] font-black uppercase tracking-widest truncate w-full text-center">{leader.name}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
+    
         {/* SectionHeader: Recent Activity */}
         <div className="px-5 pb-2 pt-6">
           <h3 className="text-xs font-black text-muted-foreground uppercase tracking-[0.2em]">积分明细</h3>

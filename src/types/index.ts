@@ -175,3 +175,29 @@ export interface EventMaterials {
   images: EventMaterial[];
   videos: EventMaterial[];
 }
+
+// 工单状态
+export type TicketStatus = 'pending' | 'processing' | 'resolved' | 'closed';
+
+// 工单信息
+export interface Ticket {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  status: TicketStatus;
+  createTime: string;
+  updateTime?: string;
+  images?: string[];
+  replies?: TicketReply[];
+}
+
+// 工单回复
+export interface TicketReply {
+  id: string;
+  content: string;
+  time: string;
+  sender: 'user' | 'support';
+  senderName: string;
+  avatar?: string;
+}

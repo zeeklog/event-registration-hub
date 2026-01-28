@@ -11,6 +11,7 @@ import EventDetail from "./pages/EventDetail";
 import Profile from "./pages/Profile";
 import Orders from "./pages/Orders";
 import Service from "./pages/Service";
+import TicketDetail from "./pages/TicketDetail";
 import Notifications from "./pages/Notifications";
 import Coupons from "./pages/Coupons";
 import ProfileEdit from "./pages/ProfileEdit";
@@ -74,6 +75,7 @@ const App = () => (
             <Route path="/profile/awards" element={<Awards />} />
             <Route path="/profile/insurance" element={<Insurance />} />
             <Route path="/service" element={<Service />} />
+            <Route path="/service/ticket/:id" element={<TicketDetail />} />
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/calendar" element={<Calendar />} />
@@ -82,7 +84,7 @@ const App = () => (
             <Route path="/order/create" element={<OrderCreate />} />
             <Route path="/order/list" element={<OrderList />} />
             <Route path="/order/:id" element={<OrderDetail />} />
-            <Route path="/scan" element={<ScanPage />} />
+            <Route path="/scan" element={<PointsCenter />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

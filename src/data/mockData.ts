@@ -479,6 +479,45 @@ export const eventMaterials: EventMaterials[] = [
   },
 ];
 
+// 模拟评价数据
+export const mockActivityReviews = [
+  {
+    id: 'rev1',
+    activityId: '1',
+    userName: '极限狂人',
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix',
+    rating: 5,
+    content: '这次赛艇锦标赛组织得非常专业！赛道环境一流，救生措施也很到位。拿到季军很开心，明年继续努力！',
+    date: '2026-02-15',
+    images: ['https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=400'],
+    tags: ['组织专业', '环境优美']
+  },
+  {
+    id: 'rev2',
+    activityId: '1',
+    userName: '水上漂',
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Milo',
+    rating: 4,
+    content: '整体体验很好，就是签到环节人有点多。建议增加签到窗口。',
+    date: '2026-02-10',
+    tags: ['体验极佳']
+  },
+  {
+    id: 'rev3',
+    activityId: '3',
+    userName: '露营小白',
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Luna',
+    rating: 5,
+    content: '带孩子来体验星空露营，孩子玩得非常开心！营地设施很完善，晚上还能看到很清晰的银河，太美了。',
+    date: '2026-01-20',
+    images: [
+      'https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=400',
+      'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=400'
+    ],
+    tags: ['亲子推荐', '星空绝美']
+  }
+];
+
 // 承诺书内容
 export const agreements: Agreement[] = [
   {
@@ -517,4 +556,67 @@ export const agreements: Agreement[] = [
     ],
     mandatory: true,
   },
+];
+
+// 模拟工单数据
+export const mockTickets = [
+  {
+    id: 'TK001',
+    title: '申请修改预约日期',
+    description: '因临时有事，想将3月15日的赛艇锦标赛调整到下一场。',
+    category: '预约变更',
+    status: 'processing',
+    createTime: '2026-02-20 10:00',
+    updateTime: '2026-02-20 14:00',
+    replies: [
+      {
+        id: 'r1',
+        content: '您好，我们已经收到您的申请。请问您想调整到哪一天的场次？',
+        time: '2026-02-20 11:30',
+        sender: 'support',
+        senderName: '客服小王'
+      },
+      {
+        id: 'r2',
+        content: '我想调整到3月22日的场次，那天还有名额吗？',
+        time: '2026-02-20 12:00',
+        sender: 'user',
+        senderName: '户外达人'
+      },
+      {
+        id: 'r3',
+        content: '正在为您查询名额，请稍候。',
+        time: '2026-02-20 14:00',
+        sender: 'support',
+        senderName: '客服小王'
+      }
+    ]
+  },
+  {
+    id: 'TK002',
+    title: '积分未到账咨询',
+    description: '完成了昨天的沙滩清理活动，但积分还没有增加。',
+    category: '积分问题',
+    status: 'resolved',
+    createTime: '2026-02-19 16:30',
+    updateTime: '2026-02-19 18:00',
+    replies: [
+      {
+        id: 'r4',
+        content: '您好，经核实，您的积分已于 2026-02-19 17:55 到账，请在积分中心查看。',
+        time: '2026-02-19 18:00',
+        sender: 'support',
+        senderName: '系统管理员'
+      }
+    ]
+  },
+  {
+    id: 'TK003',
+    title: '退款申请',
+    description: '活动取消了，申请全额退款。',
+    category: '费用退还',
+    status: 'pending',
+    createTime: '2026-02-21 09:15',
+    replies: []
+  }
 ];
