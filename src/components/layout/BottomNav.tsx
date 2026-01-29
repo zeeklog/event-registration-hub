@@ -1,10 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Grid3X3, User, MessageCircle, ShoppingBag } from 'lucide-react';
+import { Home, Grid3X3, User, MessageCircle, ShoppingBag, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navItems = [
   { path: '/', label: '首页', icon: Home },
   { path: '/category', label: '分类', icon: Grid3X3 },
+  { path: '/community', label: '社区', icon: Users },
   { path: '/points-mall', label: '积分商城', icon: ShoppingBag },
   { path: '/service', label: '客服', icon: MessageCircle },
   { path: '/profile', label: '我的', icon: User },

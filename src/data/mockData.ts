@@ -1,4 +1,4 @@
-import { Activity, Banner, Order, Coupon, Notification, User, HealthRecord, EventDetail, Agreement, EventMaterials } from '@/types';
+import { Activity, Banner, Order, Coupon, Notification, User, HealthRecord, EventDetail, Agreement, EventMaterials, CommunityPost, CommunityActivity } from '@/types';
 import rowingEvent from '@/assets/rowing-event.jpg';
 import cyclingEvent from '@/assets/cycling-event.jpg';
 import campingSite from '@/assets/camping-site.jpg';
@@ -515,6 +515,76 @@ export const mockActivityReviews = [
       'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=400'
     ],
     tags: ['亲子推荐', '星空绝美']
+  }
+];
+
+// 社区帖子模拟数据
+export const mockCommunityPosts: CommunityPost[] = [
+  {
+    id: 'post1',
+    userId: 'user1',
+    userName: '赛艇爱好者-小明',
+    userAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix',
+    content: '今天在西湖尝试了单人艇，水面非常平静，空气也很清新。赛艇真的是一项能让人静下心来的运动。🚣‍♂️',
+    images: [
+      'https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&h=600&fit=crop'
+    ],
+    tags: ['赛艇日常', '减碳'],
+    likes: 128,
+    comments: 24,
+    time: '2小时前',
+    isLiked: true
+  },
+  {
+    id: 'post2',
+    userId: 'user2',
+    userName: '马拉松老兵',
+    userAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Milo',
+    content: '深潜第二节松山湖马拉松，备赛中！希望能突破自己的PB。大家加油！🏃‍♂️🔥',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    tags: ['深潜第二节松山湖马拉松', '备赛打卡'],
+    likes: 256,
+    comments: 42,
+    time: '5小时前'
+  },
+  {
+    id: 'post3',
+    userId: 'user3',
+    userName: '铁三小能手',
+    userAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Luna',
+    content: '周末参加了小铁三训练营，游泳环节还是有点吃力，还要多多练习。🏊‍♂️🚴‍♂️🏃‍♂️',
+    images: [
+      'https://images.unsplash.com/photo-1530549387631-f3129e13204a?w=800&h=600&fit=crop'
+    ],
+    tags: ['小铁三', '周末运动'],
+    likes: 89,
+    comments: 12,
+    time: '昨天'
+  }
+];
+
+// 社区活动模拟数据
+export const mockCommunityActivities: CommunityActivity[] = [
+  {
+    id: 'ca1',
+    title: '赛艇新手周末公开课',
+    image: 'https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&h=600&fit=crop',
+    date: '2026-02-15 10:00',
+    location: '钱塘江水上中心',
+    participants: 45,
+    status: 'ongoing',
+    tags: ['新手友好', '免费体验']
+  },
+  {
+    id: 'ca2',
+    title: '环保赛艇：清理湖面公益行',
+    image: 'https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=800&h=600&fit=crop',
+    date: '2026-02-22 09:00',
+    location: '西湖断桥景区',
+    participants: 120,
+    status: 'upcoming',
+    tags: ['减碳', '公益']
   }
 ];
 

@@ -9,6 +9,7 @@ import Category from "./pages/Category";
 import ActivityDetail from "./pages/ActivityDetail";
 import EventDetail from "./pages/EventDetail";
 import Profile from "./pages/Profile";
+import Community from "./pages/Community";
 import Orders from "./pages/Orders";
 import Service from "./pages/Service";
 import TicketDetail from "./pages/TicketDetail";
@@ -57,6 +58,7 @@ const App = () => (
             <Route path="/event/:id" element={<EventDetail />} />
             <Route path="/activity/:id/review" element={<Review />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/community" element={<Community />} />
             <Route path="/profile/orders" element={<Orders />} />
             <Route path="/profile/coupons" element={<Coupons />} />
             <Route path="/profile/points" element={<PointsCenter />} />

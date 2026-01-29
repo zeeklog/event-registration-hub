@@ -176,6 +176,34 @@ export interface EventMaterials {
   videos: EventMaterial[];
 }
 
+// 社区帖子
+export interface CommunityPost {
+  id: string;
+  userId: string;
+  userName: string;
+  userAvatar?: string;
+  content: string;
+  images?: string[];
+  video?: string;
+  tags: string[];
+  likes: number;
+  comments: number;
+  time: string;
+  isLiked?: boolean;
+}
+
+// 社区活动
+export interface CommunityActivity {
+  id: string;
+  title: string;
+  image: string;
+  date: string;
+  location: string;
+  participants: number;
+  status: 'ongoing' | 'upcoming' | 'ended';
+  tags: string[];
+}
+
 // 工单状态
 export type TicketStatus = 'pending' | 'processing' | 'resolved' | 'closed';
 
